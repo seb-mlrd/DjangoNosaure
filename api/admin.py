@@ -5,7 +5,7 @@ from . import models
 
 class DinoAdmin(admin.ModelAdmin):
     list_display = ['name', 'taille', 'poid', 'display_photo']  # Champs à afficher dans la liste des articles
-    search_fields = ['name', 'description'] # Champs à rechercher
+    search_fields = ['name', 'scientific_name'] # Champs à rechercher
     list_per_page = 25  # Nombre d'articles par page dans la liste des articles
     
     def display_photo(self, obj):

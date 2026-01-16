@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,22 @@ STATICFILES_DIRS = [
 ]
 MEDIA_URL = '/medias/'
 MEDIA_ROOT = BASE_DIR / 'medias/'
+
+REST_FRAMEWORK = {
+    # Authentifications par défaut : Token et Session
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #   'rest_framework.authentication.TokenAuthentication',
+    #   'rest_framework.authentication.SessionAuthentication',  
+    # ),
+    # Permissions par défaut : Authentifié uniquement
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    #     # 'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    # ),
+    # Format de réponse de l'api par défaut : JSON
+    # 'DEFAULT_RENDERER_CLASSES': (
+    #     'rest_framework.renderers.JSONRenderer',
+    # ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 20
+}

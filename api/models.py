@@ -5,7 +5,7 @@ class Dinosaur(models.Model):
     scientific_name = models.CharField(max_length=150, verbose_name="Nom scientifique")
     periode = models.ForeignKey('Periode', on_delete=models.CASCADE, related_name='dinosaurs', verbose_name="Période")
     alimentation = models.ForeignKey('Alimentation', on_delete=models.CASCADE, related_name='dinosaurs', verbose_name="Alimentation")
-    localisation = models.ForeignKey('Localisation', on_delete=models.CASCADE, related_name='dinosaurs', verbose_name="Localisation")
+    localisation = models.ManyToManyField('Localisation', related_name='dinosaurs', verbose_name="Localisation")
     taille = models.FloatField(help_text="Taille en mètres", verbose_name="Taille")
     poid = models.FloatField(help_text="Poids en kilogrammes", verbose_name="Poids")
     image = models.ImageField(upload_to='dinosaurs/', null=True, blank=True, verbose_name="Image")
