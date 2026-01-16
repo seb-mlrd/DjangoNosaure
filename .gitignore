@@ -1,0 +1,74 @@
+# =========================
+# Django
+# =========================
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+db.sqlite3-journal
+
+# Fichiers de migration compilés
+*/migrations/__pycache__/
+
+# =========================
+# Environnement virtuel
+# =========================
+.env
+.env.*
+venv/
+env/
+.venv/
+
+# =========================
+# Variables sensibles
+# =========================
+.env.local
+.env.production
+.env.dev
+
+# =========================
+# Media & Static
+# =========================
+media/
+staticfiles/
+
+# =========================
+# Tests / Coverage
+# =========================
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.pytest_cache/
+
+# =========================
+# IDE / Éditeurs
+# =========================
+.vscode/
+.idea/
+*.swp
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Docker (si utilisé)
+# =========================
+docker-compose.override.yml
+
+# =========================
+# Celery / Redis
+# =========================
+celerybeat-schedule
+celerybeat.pid
+
+# =========================
+# Node (si front ou build)
+# =========================
+node_modules/
+npm-debug.log*
+yarn-error.log*
