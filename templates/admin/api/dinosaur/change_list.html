@@ -1,0 +1,46 @@
+{% extends "admin/change_list.html" %}
+{% load static %}
+
+{% block content %}
+    {{ block.super }}
+    
+    {% if alimentation_graph %}
+    <div style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h2 style="color: #2E7D32; margin-bottom: 20px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">
+            📊 Statistiques d'alimentation
+        </h2>
+        
+        <div style="display: flex; gap: 30px; align-items: flex-start;">
+            <!-- Graphique -->
+            <div style="flex: 1; text-align: center;">
+                <img src="data:image/png;base64,{{ alimentation_graph }}" alt="Graphique des alimentations" style="max-width: 100%; height: auto;">
+            </div>
+            
+            <!-- Statistiques détaillées -->
+            <div style="flex: 0 0 300px;">
+                <h3 style="color: #1B5E20; margin-bottom: 15px;">Détails</h3>
+                <div style="background: #F1F8F6; padding: 15px; border-radius: 5px;">
+                    <p style="margin: 0 0 10px 0; font-size: 16px;">
+                        <strong style="color: #1B5E20;">Total de dinosaures:</strong> <span style="color: #2E7D32;">{{ total_dinosaurs }}</span>
+                    </p>
+                    <hr style="border: none; border-top: 1px solid #ddd; margin: 15px 0;">
+                    
+                    {% for name, stats in alimentation_stats.items %}
+                    <div style="margin-bottom: 15px; padding: 10px; background: white; border-radius: 4px; border-left: 4px solid #4CAF50;">
+                        <div style="font-weight: bold; color: #333; margin-bottom: 5px;">{{ name }}</div>
+                        <div style="display: flex; justify-content: space-between; color: #666;">
+                            <span>{{ stats.count }} dinosaure{{ stats.count|pluralize }}</span>
+                            <span style="font-weight: bold; color: #2E7D32;">{{ stats.percentage }}%</span>
+                        </div>
+                        <div style="background: #E8F5E9; height: 8px; border-radius: 4px; margin-top: 5px; overflow: hidden;">
+                            <div style="background: #4CAF50; height: 100%; width: {{ stats.percentage }}%;"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+
