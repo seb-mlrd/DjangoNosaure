@@ -7,7 +7,6 @@ const route = useRoute()
 const dinoId = route.params.id
 
 const { dinosaurs, loading, error, fetchDinosaurById } = useDinosaurs()
-let dino = dinosaurs
 
 onMounted(async () => {
   fetchDinosaurById(dinoId)
@@ -19,28 +18,27 @@ onMounted(async () => {
     <p v-if="loading">Chargement...</p>
     <p v-if="error" class="error">{{ error }}</p>
 
-    <div v-if="dino && !loading" class="dino-details-card">
-      <h1>{{ dino.name }} 🦖</h1>
+    <div v-if="!loading" class="dino-details-card">
+      <h1>{{ dinosaurs.name }} 🦖</h1>
 
       <div class="dino-main">
-        <img :src="dino.image.url" :alt="dino.name" class="dino-image" />
-
+        <img v-if="dinosaurs.image" :src="dinosaurs.image" :alt="dinosaurs.name" class="dino-image" />
         <div class="dino-info">
-          <p><strong>Taille :</strong> {{ dino.taille }} m</p>
-          <p><strong>Poids :</strong> {{ dino.poid }} kg</p>
-          <p><strong>Période :</strong> {{ dino.periode.name }}</p>
-          <p><strong>Alimentation :</strong> {{ dino.alimentation.name }}</p>
-          <p><strong>Découverte :</strong> {{ dino.fact }}</p>
+          <p v-if="dinosaurs.taille"><strong>Taille :</strong> {{ dinosaurs.taille }} m</p>
+          <p v-if="dinosaurs.poid"><strong>Poids :</strong> {{ dinosaurs.poid }} kg</p>
+          <p v-if="dinosaurs.periode"><strong>Période :</strong> {{ dinosaurs.periode.name }}</p>
+          <p v-if="dinosaurs.alimentation"><strong>Alimentation :</strong> {{ dinosaurs.alimentation.name }}</p>
+          <p v-if="dinosaurs.fact"><strong>Découverte :</strong> {{ dinosaurs.fact }}</p>
         </div>
       </div>
 
       <div
-        v-if="dino.localisation && dino.localisation.length"
+        v-if="dinosaurs.localisation && dinosaurs.localisation.length"
         class="dino-locations"
       >
-        <p class="label">Localisation</p>
+        <p v-if="dinosaurs.localisation" class="label">Localisation</p>
         <ul>
-          <li v-for="loc in dino.localisation" :key="loc.id">
+          <li v-for="loc in dinosaurs.localisation" :key="loc.id">
             {{ loc.continent }}
           </li>
         </ul>

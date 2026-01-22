@@ -11,6 +11,7 @@
         <RouterLink to="/">Accueil</RouterLink>
         <RouterLink to="/dinos">Dinosaures</RouterLink>
         <RouterLink to="/categories">Categories</RouterLink>
+        <RouterLink to="/alimentations">Alimentations</RouterLink>
       </nav>
     </header>
 

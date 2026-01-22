@@ -40,7 +40,8 @@ export function useDinosaurs() {
     
     try {
       const response = await api.get(`dinosaure/${id}/`)
-      return response.data
+      dinosaurs.value = response.data
+      return dinosaurs.value
     } catch (err) {
       error.value = `Erreur lors du chargement du dinosaure: ${err.message}`
       console.error('Error fetching dinosaur:', err)
@@ -136,6 +137,30 @@ export function useDinosaurs() {
     }
   }
 
+    /**
+   * Récupère la liste des dinosaures par type d'alimentation
+   */
+  const fetchDinosaursByAlimentation = async (alimentationType) => {
+    loading.value = true
+    error.value = null
+    
+    try {
+      const response = await api.get('dinosaure/')
+      const dinoList = response.data.results || response.data
+      const filteredDinosaurs = dinoList.filter(dino => 
+        dino.alimentation?.name.toLowerCase() === alimentationType
+      )
+      dinosaurs.value = filteredDinosaurs
+      return dinosaurs.value
+    } catch (err) {
+      error.value = `Erreur lors du chargement: ${err.message}`
+      console.error('Error fetching dinosaurs:', err)
+      throw err
+    } finally {
+      loading.value = false
+    }
+  }
+
   return {
     // État
     dinosaurs,
@@ -146,6 +171,7 @@ export function useDinosaurs() {
     fetchDinosaurs,
     fetchDinosaurById,
     fetchDinosaurByCategoryName,
+    fetchDinosaursByAlimentation,
     createDinosaur,
     updateDinosaur,
     deleteDinosaur

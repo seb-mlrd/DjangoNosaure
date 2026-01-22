@@ -10,6 +10,7 @@ class Dinosaur(models.Model):
     poid = models.FloatField(help_text="Poids en kilogrammes", verbose_name="Poids")
     image = models.ImageField(upload_to='dinosaurs/', null=True, blank=True, verbose_name="Image")
     category = models.ManyToManyField('Category', related_name='dinosaurs', blank=True, verbose_name="Catégorie")
+    fact = models.TextField(blank=True, null=True, verbose_name="Fait intéressant")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Date de création")
     class Meta:
         verbose_name = "Dinosaure"
