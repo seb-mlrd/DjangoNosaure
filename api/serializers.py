@@ -49,7 +49,7 @@ class DinosaurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dinosaur
         fields = [
-            'id', 'name', 'scientific_name', 'taille', 'poid', 'image', 'created_at',
+            'id', 'name', 'scientific_name', 'taille', 'poid', 'image', 'created_at', 'fact',
             'periode', 'periode_id',
             'alimentation', 'alimentation_id',
             'localisation', 'localisation_ids',

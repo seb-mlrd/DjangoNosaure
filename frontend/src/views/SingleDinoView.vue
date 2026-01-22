@@ -11,8 +11,8 @@ const { dinosaurs, loading, error, fetchDinosaurById } = useDinosaurs()
 onMounted(async () => {
   fetchDinosaurById(dinoId)
 })
+console.log(dinosaurs)
 </script>
-
 <template>
   <div class="dino-details-page">
     <p v-if="loading">Chargement...</p>
@@ -28,7 +28,6 @@ onMounted(async () => {
           <p v-if="dinosaurs.poid"><strong>Poids :</strong> {{ dinosaurs.poid }} kg</p>
           <p v-if="dinosaurs.periode"><strong>Période :</strong> {{ dinosaurs.periode.name }}</p>
           <p v-if="dinosaurs.alimentation"><strong>Alimentation :</strong> {{ dinosaurs.alimentation.name }}</p>
-          <p v-if="dinosaurs.fact"><strong>Découverte :</strong> {{ dinosaurs.fact }}</p>
         </div>
       </div>
 
@@ -42,6 +41,12 @@ onMounted(async () => {
             {{ loc.continent }}
           </li>
         </ul>
+      </div>
+      <div 
+        v-if="dinosaurs.fact" 
+        class="dino-fact"
+      >
+        {{ dinosaurs.fact}}
       </div>
     </div>
   </div>
@@ -62,12 +67,6 @@ onMounted(async () => {
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7),
     inset 0 0 15px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.dino-details-card:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.9),
-    inset 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .dino-details-card h1 {
@@ -132,5 +131,16 @@ onMounted(async () => {
   border-radius: 999px;
   font-size: 0.85rem;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+.dino-fact {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #394d36;
+  border-left: 5px solid #aed581;
+  color: #e0e0e0;
+  font-style: italic;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  white-space: pre-line;
 }
 </style>
